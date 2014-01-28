@@ -1,0 +1,50 @@
+# Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
+[Bb]in/
+[Oo]bj/
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+*_i.c
+*_p.c
+*.ilk
+*.meta
+*.obj
+*.pch
+*.pdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.log
+*.vspscc
+*.vssscc
+.builds
+
+# ReSharper is a .NET coding add-in
+_ReSharper*
+
+# NCrunch
+*.ncrunch*
+.*crunch*.local.xml
+
+# NuGet Packages Directory
+packages/
+
+UmbracoNuget/UmbracoNuget.Site/App_Data/
+UmbracoNuget/UmbracoNuget.Site/obj/Debug/
+UmbracoNuget/packages/
+UmbracoNuget/UmbracoNuget/obj/
+UmbracoNuget/UmbracoNuget.Site/App_Plugins/Packages/
+UmbracoNuget/UmbracoNuget.NightlySite/App_Data/TEMP/
+UmbracoNuget/UmbracoNuget.NightlySite/obj/
