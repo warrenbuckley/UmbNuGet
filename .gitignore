@@ -39,7 +39,7 @@ _ReSharper*
 .*crunch*.local.xml
 
 # NuGet Packages Directory
-packages/
+/packages/
 
 UmbracoNuget/UmbracoNuget.Site/App_Data/
 UmbracoNuget/UmbracoNuget.Site/obj/Debug/
