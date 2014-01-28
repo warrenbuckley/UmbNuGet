@@ -1,0 +1,17 @@
+﻿{
+	javascript: [
+
+	    '~/App_Plugins/NuGet/backoffice/Packages/controllers/Partial.Controller.js',
+		'~/App_Plugins/NuGet/backoffice/Packages/controllers/Detail.Controller.js',
+		'~/App_Plugins/NuGet/backoffice/Packages/controllers/Browse.Controller.js',
+		'~/App_Plugins/NuGet/backoffice/Packages/controllers/Search.Controller.js',
+		'~/App_Plugins/NuGet/backoffice/Packages/controllers/InstalledPackages.Controller.js',
+		'~/App_Plugins/NuGet/backoffice/Packages/controllers/LocalPackages.Controller.js',
+		'~/App_Plugins/NuGet/backoffice/Packages/controllers/Creator.Controller.js',
+		'~/App_Plugins/NuGet/backoffice/Packages/controllers/FilePicker.Controller.js',
+		'~/App_Plugins/NuGet/backoffice/Packages/controllers/DependencyPicker.Controller.js',
+		'~/App_Plugins/NuGet/backoffice/Packages/resources/NuGet.Resource.js',
+		'~/App_Plugins/NuGet/backoffice/Packages/resources/Creator.Resource.js',
+	],
+	css: []
+}

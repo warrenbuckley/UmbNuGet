@@ -48,3 +48,5 @@ UmbracoNuget/UmbracoNuget/obj/
 UmbracoNuget/UmbracoNuget.Site/App_Plugins/Packages/
 UmbracoNuget/UmbracoNuget.NightlySite/App_Data/TEMP/
 UmbracoNuget/UmbracoNuget.NightlySite/obj/
+UmbracoNuget.NightlySite/App_Data/TEMP/
+UmbracoNuget.NightlySite/App_Data/Logs/

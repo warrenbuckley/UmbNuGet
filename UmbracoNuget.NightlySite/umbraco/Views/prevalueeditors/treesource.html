@@ -1,0 +1,42 @@
+<div ng-controller="Umbraco.PrevalueEditors.TreeSourceController" class="umb-editor umb-contentpicker">
+
+	<select ng-model="model.value.type">
+		<option value="content">Content</option>
+		<option value="media">Media</option>
+		<option value="member">Members</option>
+	</select>
+
+	<br/><br/>
+
+	<div ng-hide="model.value.type === 'member'">
+		<ul class="unstyled list-icons" ng-if="node" >	
+			<li>	
+				<i class="icon icon-delete red hover-show pull-right" ng-click="clear()"></i>
+				<i class="icon {{node.icon}} hover-hide"></i>
+				<a href prevent-default ng-click="openContentPicker()" >{{node.name}}</a>
+			</li>
+		</ul>
+
+		<ul class="unstyled list-icons" ng-show="multipicker || !node">	
+			<li ng-hide="showSearch">
+				<i class="icon icon-add blue"></i>
+				<a href ng-click="openContentPicker()" prevent-default>
+					<localize key="general_choose">Choose</localize>...
+				</a>
+<!--
+				<a href ng-click="showSearch = true"> Or search</a>-->
+			</li>
+
+			<li ng-show="showSearch">
+				<input type="text" 
+					ng-model="model.value.query" 
+					class="umb-textstring" 
+					placeholder="Enter query">
+
+					<input type="radio" ng-model="model.value.scope" value="global"> Global 	
+					<input type="radio" ng-model="model.value.scope" value="current"> Current
+					<a href ng-click="showSearch = false"> ...Or pick a node</a>
+			</li>
+		</ul>
+	</div>
+</div>
