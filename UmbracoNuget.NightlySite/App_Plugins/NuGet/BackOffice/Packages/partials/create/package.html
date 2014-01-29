@@ -42,7 +42,16 @@
                 </umb-control-group>
                 
                 <umb-control-group label="Dependencies" description="Enter any dependencies this package has">
+                    
+                    <div ng-show="package.dependencies">
+                        <h5>Selected Package Dependencies</h5>
+                        <ul>
+                            <li ng-repeat="dependancy in package.dependencies">{{ dependancy }}</li>
+                        </ul>
+                    </div>
+
                     <button ng-click="pickDependencies()" class="btn">Pick Package Dependencies</button>
+                    <button ng-click="clearDependencies()" ng-show="package.dependencies" class="btn btn-danger">Clear Files</button>
                 </umb-control-group>
                 
                 <textarea>{{ package }}</textarea>

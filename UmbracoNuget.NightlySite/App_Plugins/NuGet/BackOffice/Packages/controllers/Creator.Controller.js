@@ -111,4 +111,10 @@
             $scope.package.contentFiles = [];
         };
 
+        //Click Button - Clears out package dependencies from the object on the model
+        $scope.clearDependencies = function () {
+            //Clear the property on the package
+            $scope.package.dependencies = [];
+        };
+
     });

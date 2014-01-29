@@ -34,8 +34,8 @@
         <div ng-show="files">
             <h4>Files</h4>
             <ul class="umb-tree">
-                <li ng-repeat="file in files | filter:searchText" ng-click="selectFile(file, $event)">
-                    <div>
+                <li ng-repeat="file in files | filter:searchText" ng-click="selectFile(file, $event)" ng-class="{'current': isItemSelected(file)}">
+                    <div ng-class="{'selected': isItemSelected(file)}">
                         <i class="icon umb-tree-icon sprTree icon-umb-content"></i> {{ file.FileName }}
                     </div>
                 </li>

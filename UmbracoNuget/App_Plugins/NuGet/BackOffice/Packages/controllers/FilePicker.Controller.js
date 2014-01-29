@@ -102,4 +102,31 @@
 
         }
 
+        //Function to help determine if 
+        $scope.isItemSelected = function (file) {
+
+            //Check if the nuget id is in the list of selected items
+            var fileRelPath = file.RelPath;
+            var parentScope = $scope.$parent;
+            var dialogData  = parentScope.dialogData;
+
+            for (var i = 0; i < dialogData.selection.length ; i++) {
+
+                console.log('Item ' + i);
+                console.log(dialogData.selection[i]);
+                console.log(fileRelPath);
+
+                //If the current item in the selection keys matches the nugetId of the item in the list then return true
+                if (dialogData.selection[i].RelPath === fileRelPath) {
+
+                    console.log('isItemSelected is true');
+
+                    return true;
+                }
+            }
+
+            return false;
+
+        };
+
     });
