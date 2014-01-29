@@ -1,0 +1,62 @@
+﻿<div class="umb-panel" ng-controller="NuGet.FilePickerController">
+    
+    <div class="umb-panel-header">
+        <div class="umb-el-wrap umb-panel-buttons">
+            <div class="form-search">
+                <i class="icon-search"></i>
+                <input type="text" ng-model="searchText" class="umb-search-field search-query" placeholder="Search...">
+            </div>
+        </div>
+    </div>
+
+    <div class="umb-panel-body with-footer">
+        
+        <div>
+            <h4>Folder Path</h4>
+            <ul>
+                <li ng-repeat="path in folderPaths" ng-click="goToFolder(path)">
+                    {{ path.FolderName }}
+                </li> 
+            </ul>
+        </div>
+      
+        <div ng-show="folders">
+            <h4>Folders</h4>
+            <ul class="umb-tree">
+                <li ng-repeat="folder in folders | filter:searchText" ng-click="selectFolder(folder)">
+                    <div>
+                        <i class="icon umb-tree-icon sprTree icon-folder"></i> {{ folder.FolderName }}
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div ng-show="files">
+            <h4>Files</h4>
+            <ul class="umb-tree">
+                <li ng-repeat="file in files | filter:searchText" ng-click="selectFile(file, $event)">
+                    <div>
+                        <i class="icon umb-tree-icon sprTree icon-umb-content"></i> {{ file.FileName }}
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="umb-panel-footer">
+        <div class="umb-el-wrap umb-panel-buttons">
+            <div class="btn-toolbar umb-btn-toolbar pull-right">
+
+                <a href ng-click="close()" class="btn btn-link">
+                    <localize key="general_cancel">Cancel</localize>
+                </a>
+
+                <button class="btn btn-primary" ng-click="submit(dialogData)">
+                    <localize key="buttons_select">Select</localize> ({{ dialogData.selection.length }})
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
