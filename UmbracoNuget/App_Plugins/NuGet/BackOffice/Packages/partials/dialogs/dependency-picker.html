@@ -1,0 +1,50 @@
+﻿<div class="umb-panel" ng-controller="NuGet.DependencyPickerController">
+
+    <div class="umb-panel-header">
+        <div class="umb-el-wrap umb-panel-buttons">
+            <div class="form-search">
+                <i class="icon-search"></i>
+                <input type="text" ng-model="searchText" class="umb-search-field search-query" placeholder="Search..." on-keyup="performSearch()">
+            </div>
+        </div>
+    </div>
+
+    <div class="umb-panel-body with-footer"> 
+
+        <div ng-show="!searchResults">
+            <h5>Please search for a package to add</h5>
+        </div>
+        
+        <div ng-show="fetchingResults">
+            <h4>Searching....</h4>
+            <h5>Please wait</h5>
+        </div>
+
+        <div ng-show="searchResults">
+            <ul class="umb-tree">
+                <li ng-repeat="package in searchResults" ng-click="selectPackage(package, $event)" ng-class="{'current': isItemSelected(package)}">
+                    <div ng-class="{'selected': isItemSelected(package)}">
+                        <i class="icon umb-tree-icon sprTree icon-umb-content"></i> {{ package.Title }} ({{ package.Id }})
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="umb-panel-footer">
+        <div class="umb-el-wrap umb-panel-buttons">
+            <div class="btn-toolbar umb-btn-toolbar pull-right">
+
+                <a href ng-click="close()" class="btn btn-link">
+                    <localize key="general_cancel">Cancel</localize>
+                </a>
+
+                <button class="btn btn-primary" ng-click="submit(dialogData)">
+                    <localize key="buttons_select">Select</localize> ({{ dialogData.selection.length }})
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>

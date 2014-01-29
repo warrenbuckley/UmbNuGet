@@ -1,0 +1,159 @@
+﻿<umb-panel ng-controller="NuGet.DetailController">
+    <umb-header>
+        <div class="span4">
+            <h1>NuGet Package Repository</h1>
+        </div>
+    </umb-header>
+
+
+    <div class="umb-panel-body">
+        <div class="umb-pane">
+
+            <div ng-show="isLoading">
+                <h3>Loading...</h3>
+            </div>
+
+            <div ng-show="isInstalling">
+                <h3>Installing. Please Wait</h3>
+            </div>
+
+            <div ng-show="isUninstalling">
+                <h3>Uninstalling. Please Wait</h3>
+            </div>
+
+            <div ng-show="!isLoading && !isInstalling && !isuninstalling">
+
+                <h2>{{ package.Title }}</h2>
+
+                <div class="row-fluid">
+
+                    <!-- Main Package Content Details -->
+                    <div class="span8">
+                        <p>
+                            {{ package.Description }}
+                        </p>
+
+                        <!-- Project Url & Install Button (if not installed) -->
+                        <!-- Update package (if installed & has updates) -->
+                        <!-- Unistall Package if already installed -->
+                        <div class="umb-tab-buttons">
+                            <div class="btn-group">
+                                <a href="{{ package.ProjectUrl }}" class="btn" target="_blank" ng-show="package.ProjectUrl">View Project</a>
+                                <button ng-show="!package.IsAlreadyInstalled" class="btn btn-primary" data-hotkey="ctrl+i" ng-click="installPackage(package.Id, package.Version)">Install Package</button>
+                                <button ng-show="package.HasAnUpdate" class="btn btn-primary" data-hotkey="ctrl+u" ng-click="updatePackage(package.Id, package.Version)">Update Package</button>
+                                <button ng-show="package.IsAlreadyInstalled" class="btn btn-danger" data-hotkey="ctrl+shift+u" ng-click="uninstallPackage(package.Id, package.Version)">Uninstall Package</button>
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <div ng-show="package.BuildFiles">
+                            <h4>Build Files</h4>
+                            <ul>
+                                <li ng-repeat="file in package.BuildFiles">
+                                    {{ file.EffectivePath }}
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div ng-show="package.ContentFiles">
+                            <h4>Content Files</h4>
+                            <ul>
+                                <li ng-repeat="file in package.ContentFiles">
+                                    {{ file.EffectivePath }}
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div ng-show="package.LibFiles">
+                            <h4>Lib Files</h4>
+                            <ul>
+                                <li ng-repeat="file in package.LibFiles">
+                                    {{ file.EffectivePath }}
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div ng-show="package.SatelliteFiles">
+                            <h4>Satellite Files</h4>
+                            <ul>
+                                <li ng-repeat="file in package.SatelliteFiles">
+                                    {{ file.EffectivePath }}
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div ng-show="package.ToolFiles">
+                            <h4>Tool Files</h4>
+                            <ul>
+                                <li ng-repeat="file in package.ToolFiles">
+                                    {{ file.EffectivePath }}
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div ng-show="package.PackageAssemblyReferences">
+                            <h4>Package Assembly References</h4>
+                            <ul>
+                                <li ng-repeat="ref in package.PackageAssemblyReferences">
+                                    {{ ref.Name }}
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div ng-show="package.AssemblyReferences">
+                            <h4>Assembly References</h4>
+                            <ul>
+                                <li ng-repeat="ref in package.AssemblyReferences">
+                                    {{ ref.Name }}
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div ng-show="package.DependencySets">
+                            <div ng-repeat="dependancyset in package.DependencySets">
+                                <div ng-show="dependancyset.Dependencies">
+                                    <h3>Dependencies</h3>
+
+                                    <div ng-repeat="dependancy in dependancyset.Dependencies">
+                                        <h4>{{ dependancy.Id }}</h4>
+                                        <p>
+                                            <strong>Min Version:</strong> {{ dependancy.VersionSpec.MinVersion }}<br />
+                                            <strong>Max Version:</strong> {{ dependancy.VersionSpec.MaxVersion }}
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Meta SideBar -->
+                    <div class="span3 offset1">
+                        <div ng-show="package.IconUrl">
+                            <img src="{{ package.IconUrl }}" />
+                        </div>
+
+                        <h6>Package ID: {{ package.Id }}</h6>
+                        <h6>Version {{ package.Version }}</h6>
+                        <div ng-show="package.Authors">
+                            <h6>Authors:</h6>
+                            <ul>
+                                <li ng-repeat="author in package.Authors">
+                                    {{ author }}
+                                </li>
+                            </ul>
+                        </div>
+                        <h6>Published: {{ package.Published }}</h6>
+
+                        <h6>Downloads: {{ package.DownloadCount }}</h6>
+                        <h6>Total Downloads: {{ package.AllDownloadsCount }}</h6>
+                        <h6 ng-show="package.Tags">Tags: {{ package.Tags }}</h6>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</umb-panel>

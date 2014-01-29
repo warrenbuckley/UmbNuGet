@@ -1,0 +1,26 @@
+﻿<umb-panel ng-controller="NuGet.PartialController">
+    <div class="umb-panel-header">
+        <div class="row-fluid">
+            
+            <div class="span4">
+                <h1>NuGet Package Repository</h1>
+            </div>
+
+            <ul class="nav nav-tabs umb-nav-tabs span12">
+                <li class="active">
+                    <a href="#tab-meta" data-toggle="tab">Meta</a>
+                </li>
+                <li>
+                    <a href="#tab-files" data-toggle="tab">Files</a>
+                </li>
+                <li>
+                    <a href="#tab-umbraco" data-toggle="tab">Umbraco</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="umb-panel-body umb-scrollable row-fluid">
+        <div ng-include="templatePartialURL"></div>
+    </div>
+</umb-panel>

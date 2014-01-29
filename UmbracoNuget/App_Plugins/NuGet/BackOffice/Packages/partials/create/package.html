@@ -1,0 +1,173 @@
+﻿<div class="tab-content form-horizontal umb-tab-content" ng-controller="NuGet.CreatorController">
+
+    <!-- Meta Tab Content -->
+    <div id="tab-meta" class="umb-tab-pane tab-pane active">
+        <div class="umb-tab-pane-inner">
+            <div class="umb-pane">
+
+                <umb-control-group label="Title" description="The name of your package">
+                    <input type="text" class="umb-editor umb-textstring" ng-model="package.title" required />
+                </umb-control-group>
+
+                <umb-control-group label="ID" description="The unique package ID">
+                    <input type="text" class="umb-editor umb-textstring" ng-model="package.id" required />
+                </umb-control-group>
+
+                <umb-control-group label="Version" description="The version number of this package eg: 1.2.1">
+                    <input type="text" class="umb-editor umb-textstring" ng-model="package.version" required />
+                </umb-control-group>
+
+                <umb-control-group label="Authors" description="The author/owners of this created package">
+                    <input type="text" class="umb-editor umb-textstring" ng-model="package.authors" required />
+                </umb-control-group>
+
+                <umb-control-group label="Icon Url" description="The Url to the icon for this package">
+                    <input type="text" class="umb-editor umb-textstring" ng-model="package.iconurl" />
+                </umb-control-group>
+
+                <umb-control-group label="Project Url" description="The Url to the project for this package">
+                    <input type="text" class="umb-editor umb-textstring" ng-model="package.projecturl" />
+                </umb-control-group>
+
+                <umb-control-group label="Summary" description="Provide a short summary of your package">
+                    <textarea class="umb-editor umb-textstring" ng-model="package.summary" required></textarea>
+                </umb-control-group>
+
+                <umb-control-group label="Description" description="Here you can provide a more in depth detail of your package">
+                    <textarea class="umb-editor umb-textstring" ng-model="package.description" required></textarea>
+                </umb-control-group>
+
+                <umb-control-group label="Tags" description="A comma seperated string of tags for this package">
+                    <input type="text" class="umb-editor umb-textstring" ng-model="package.tags" required />
+                </umb-control-group>
+                
+                <umb-control-group label="Dependencies" description="Enter any dependencies this package has">
+                    <button ng-click="pickDependencies()" class="btn">Pick Package Dependencies</button>
+                </umb-control-group>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Files Tab Content -->
+    <div id="tab-files" class="umb-tab-pane tab-pane">
+        <div class="umb-tab-pane-inner">
+            <div class="umb-pane">
+                
+                <umb-control-group label="Lib Files" description="These files are usually DLLs and will be copied to the Bin folder when installed">
+                   
+                    <div ng-show="selectedLibFiles">
+                        <ul>
+                            <li ng-repeat="file in selectedLibFiles">{{ file.Name }}</li>
+                        </ul>
+                    </div>
+
+                    <p>
+                        <button ng-click="pickFiles(binFolder)" class="btn">Pick Lib Files</button>
+                    </p>
+
+                </umb-control-group>
+                
+                <umb-control-group label="Content Files" description="Pick the remaining files that your package requires.">
+                    
+                    <div ng-show="selectedLibFiles">
+                        <ul>
+                            <li ng-repeat="file in selectedLibFiles">{{ file.Name }}</li>
+                        </ul>
+                    </div>
+
+                    <p>
+                        <button ng-click="pickFiles(rootFolder)" class="btn">Pick Content Files</button>
+                    </p>
+
+                </umb-control-group>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Umbraco Tab Content -->
+    <div id="tab-umbraco" class="umb-tab-pane tab-pane">
+        <div class="umb-tab-pane-inner">
+            <div class="umb-pane">
+
+                <umb-control-group label="Content" description="Pick the content nodes to include in this package (optional)">
+                    
+                    <p ng-show="nodePicked">
+                        <strong>Name:</strong> {{ nodePicked.name }}<br />
+                        <strong>ID:</strong> {{ nodePicked.id }}
+                    </p>
+                    
+                    <p>
+                        <button ng-click="pickContentNode()" class="btn">Pick Content Node</button>
+                    </p>
+
+                    <p>
+                        <input type="checkbox" name="includeChildNodes" ng-model="package.includeChildNodes" />
+                        <label for="includeChildNodes">Include all child nodes?</label>
+                    </p>
+                    
+                    
+                </umb-control-group>
+
+                <umb-control-group label="Document Types" description="Pick the document types to include in this package (optional)">
+                    <div ng-repeat="docType in docTypes">
+                        <input type="checkbox" id="{{ docType.Key }}" name="docTypes" value="{{ docType.Alias }}" />
+                        <label for="{{ docType.Key }}">{{ docType.Name }}</label>
+                    </div>
+                </umb-control-group>
+
+                <umb-control-group label="Templates" description="Pick the templates to include in this package (optional)">
+                    <div ng-repeat="template in templates">
+                        <input type="checkbox" id="{{ template.Key }}" name="templates" value="{{ template.Alias }}" />
+                        <label for="{{ template.Key }}">{{ template.Name }}</label>
+                    </div>
+                </umb-control-group>
+
+                <umb-control-group label="Stylesheets" description="Pick the stylesheets to include in this package (optional)">
+                    <div ng-repeat="css in stylesheets">
+                        <input type="checkbox" id="{{ css.Key }}" name="stylesheets" value="{{ css.Alias }}" />
+                        <label for="{{ css.Key }}">{{ css.Name }}</label>
+                    </div>
+                </umb-control-group>
+
+                <umb-control-group label="Macros" description="Pick the macros to include in this package (optional)">
+                    <div ng-repeat="macro in macros">
+                        <input type="checkbox" id="{{ macro.Key }}" name="macros" value="{{ macro.Alias }}" />
+                        <label for="{{ macro.Key }}">{{ macro.Name }}</label>
+                    </div>
+                </umb-control-group>
+
+                <umb-control-group label="Languages" description="Pick the lagnuages to include in this package (optional)">
+                    <div ng-repeat="lang in languages">
+                        <input type="checkbox" id="{{ lang.Key }}" name="languages" value="{{ lang.IsoCode }}" />
+                        <label for="{{ lang.Key }}">{{ lang.IsoCode }}</label>
+                    </div>
+                </umb-control-group>
+
+                <umb-control-group label="Dictionary Items" description="Pick the dictionary items to include in this package (optional)">
+                    <h3>Dictionary Items: TODO</h3>
+                </umb-control-group>
+
+                <umb-control-group label="Data Types" description="Pick the data types to include in this package (optional)">
+                    <div ng-repeat="dataType in dataTypes">
+                        <input type="checkbox" id="{{ dataType.Key }}" name="dataTypes" value="{{ dataType.Alias }}" />
+                        <label for="{{ dataType.Key }}">{{ dataType.Name }}</label>
+                    </div>
+                </umb-control-group>
+
+                <umb-control-group label="Package Actions" description="Code to run for this package (optional)">
+                    <textarea class="umb-editor umb-textstring" ng-model="package.actions"></textarea>
+                </umb-control-group>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="umb-tab-buttons">
+    <div class="btn-group">
+        <button ng-click="savePackage(package)" data-hotkey="ctrl+s" class="btn btn-success">Create Package</button>
+    </div>
+</div>
